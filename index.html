@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+            integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+            crossorigin="anonymous"
+        />
+        <script src="https://unpkg.com/vue@next"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Glory&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="styles.css" />
+        <title>BarberShop</title>
+    </head>
+    <body>
+        <div id="main">
+            <div class="title text-center">
+                <h1>La Barberia</h1>
+                <img src="https://img.icons8.com/clouds/100/000000/barber-pole.png" />
+            </div>
+
+            <section class="text-center">
+                <ol>
+                    <h4><i class="fas fa-circle text-info"></i> Anota tu nombre</h4>
+                    <h4><i class="fas fa-circle text-info"></i> Escoje el barbero de tu preferencia</h4>
+                    <h4><i class="fas fa-circle text-info"></i> Oprime Confirmar</h4>
+                </ol>
+
+                <label>Tu nombre</label>
+                <br />
+                <input type="text" placeholder="Escribe el nombre aqui" v-model="customerName" />
+                <br />
+                <label>Selecciona un Barbero</label>
+                <br />
+                <select v-model="barber">
+                    <option value="" disabled selected>Barberos</option>
+                    <option value="Barber 1">Barber 1</option>
+                    <option value="Barber 2">Barber 2</option>
+                </select>
+                <br />
+                <img src="https://img.icons8.com/color/96/000000/barber-chair.png" class="mt-2" />
+                <h1 class="mt-2">Total en Espera: {{totalEnEspera}}</h1>
+
+                <br />
+                <button class="btn btn-info mt-2" @click="addCustomer()">Confirmar</button>
+            </section>
+            <div class="container px-4 mt-4">
+                <div class="row gx-5">
+                    <div class="col">
+                        <div class="mb-2 p-3 border rounded-pill bg-dark text-white text-center barber">
+                            <i class="far fa-user fa-2x"></i> Barbero 1
+                            <br />
+
+                            <button class="btn btn-sm btn-light text-center mt-2" @click="b1toggleTotal()">
+                                {{b1isVisible ? 'Ocultar Totales' : 'Ver Totales'}}
+                            </button>
+                            <p v-show="b1isVisible" class="mt-2">Total De Clientes: {{b1Total}}</p>
+                            <p v-show="b1isVisible">Atendidos: {{b1Atendidos}}</p>
+                            <p v-show="b1isVisible">Eliminados: {{b1Eliminados}}</p>
+                        </div>
+                        <h3 class="text-center">
+                            <i class="fas fa-user-clock text-warning"></i> En Espera: {{b1count}}
+                        </h3>
+                        <div class="customer" v-for="(customer,index) in Barber1" :key="customer">
+                            <i class="far fa-user text-warning"></i>
+                            {{customer}} |
+                            <i class="fas fa-user-plus text-success" @click="b1Atender(index)">Atender</i>|
+                            <i class="fas fa-user-times text-danger" @click="b1Deletes(index)">Eliminar</i>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="mb-2 p-3 border rounded-pill bg-dark text-white text-center barber">
+                            <i class="far fa-user fa-2x"></i> Barbero 2
+                            <br />
+                            <button class="btn btn-sm btn-light text-center mt-2" @click="b2toggleTotal()">
+                                {{b2isVisible ? 'Ocultar Totales' : 'Ver Totales'}}
+                            </button>
+                            <p v-show="b2isVisible" class="mt-2">Total De Clientes: {{b2Total}}</p>
+                            <p v-show="b2isVisible">Atendidos: {{b2Atendidos}}</p>
+                            <p v-show="b2isVisible">Eliminados: {{b2Eliminados}}</p>
+                        </div>
+                        <h3 class="text-center">
+                            <i class="fas fa-user-clock text-warning"></i> En Espera: {{b2count}}
+                        </h3>
+                        <div class="customer" v-for="(customer,index) in Barber2" :key="customer">
+                            <i class="far fa-user text-warning"></i>
+                            {{customer}} |
+                            <i class="fas fa-user-plus text-success" @click="b2Atender(index)">Atender</i>|
+                            <i class="fas fa-user-times text-danger" @click="b2Deletes(index)">Eliminar</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+        <script src="main.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>

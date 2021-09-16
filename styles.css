@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+}
+
+body {
+    box-sizing: border-box;
+    font-family: "Glory", sans-serif;
+    background-color: rgb(174, 201, 252);
+}
+
+li {
+    list-style-type: none;
+}
+
+label {
+    font-size: 24px;
+    color: rgb(63, 63, 63);
+}
+
+input {
+    text-align: center;
+    font-size: 20px;
+    height: 50px;
+    width: 200px;
+}
+
+select {
+    text-align: center;
+    font-size: 20px;
+    height: 50px;
+    width: 200px;
+}
+
+.title {
+    height: 150px;
+}
+
+.barber {
+    font-size: 20px;
+}
+
+.customer {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+    font-size: 16px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
