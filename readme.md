@@ -1,6 +1,12 @@
 # Barbershop Turn System
 ## **made with Vue3 JS (cdn)**
+### Tools used:
+- <img src="https://img.icons8.com/windows/64/000000/vuejs.png"/>VueJS3
+- <img src="https://img.icons8.com/color/48/000000/bootstrap.png"/>Bootstrap 5
+- <img src="https://img.icons8.com/windows/64/000000/font-awesome-flag.png"/>Font Awesome
+---
 
+### What does this app do?
 * Add Customer Name **(customer and/or barber can add new customer)**
 * Select Barber **(customer and/or barber can select barber)**
 * Show Popup message if name and/or barber are not selected when confirm button is pressed.
