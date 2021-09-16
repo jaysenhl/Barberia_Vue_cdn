@@ -21,5 +21,8 @@
 ### Posible change:
 * Make same project with Vue CLI 
 
-### Demo
+### Website Demo
+https://barbershopv2.netlify.app/
+
+### Video Demo
 https://youtu.be/pnElTjCmh7c
